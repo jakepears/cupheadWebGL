@@ -1,27 +1,29 @@
 /** @format */
 
-import { useState } from 'react';
-import { Character, Direction } from '@types';
+import { useState, useEffect } from 'react';
+import useKeyPress from './key';
 import Image from 'next/image';
+import Sprite from 'public/images/sprite.png';
 
 interface PlayerProps {
 	x: number;
 	y: number;
-	character: Character;
 }
 
-export default function Player({ x, y, character }: PlayerProps) {
+export default function Player({ x, y }: PlayerProps) {
 	const [pos, setPos] = useState({ x, y });
-	const [dir, setDir] = useState<Direction>(Direction.Down);
 
-	function handleMove(dir: Direction) {
-		// update position based on move
+	const { isDown, wasReleased } = useKeyPress();
+
+	function handleMove(dir) {
+		if (isDown(dir)) {
+			// update position
+		}
 	}
 
-	function getSprite(): string {
-		// logic to get sprite
-		return '';
-	}
+	useEffect(() => {
+		handleMove('left');
+	}, [isDown, handleMove]);
 
 	return (
 		<div
@@ -30,7 +32,7 @@ export default function Player({ x, y, character }: PlayerProps) {
 				left: pos.x,
 				top: pos.y,
 			}}>
-			<Image src={getSprite()} alt={character} />
+			<Image src={Sprite} alt={'character'} />
 		</div>
 	);
 }

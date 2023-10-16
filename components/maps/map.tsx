@@ -1,6 +1,6 @@
 /** @format */
 
-export const map = [
+export const Map = [
 	[
 		{ l: 6 },
 		{ l: 6 },
