@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-
+import Sprite from '/public/images/tiles.png';
 interface TileProps {
 	x: number;
 	y: number;
@@ -16,7 +16,7 @@ export default function Tile({ x, y, tileX, tileY, width, height }: TileProps) {
 	const [displayed, setDisplayed] = useState(false);
 
 	function getTileSprite() {
-		// logic to get sprite
+		return `url(${Sprite}) -${tileX * 32}px -${tileY * 32}px`;
 	}
 
 	return (
@@ -29,7 +29,7 @@ export default function Tile({ x, y, tileX, tileY, width, height }: TileProps) {
 				width: width,
 				height: height,
 			}}>
-			{displayed && <Image src={getTileSprite()} />}
+			{displayed && <Image src={getTileSprite()} alt='Tile Sprite' />}
 		</div>
 	);
 }
