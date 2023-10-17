@@ -1,35 +1,27 @@
 /** @format */
 
 import React from 'react';
-import UnityProgress from './TemplateData/UnityProgress';
-import { UnityLoader } from './Build/UnityLoader';
-import Image from 'next/image';
-import WebGlLogo from '@/public/images/webgl-logo.png';
-import FullScreen from '@/public/images/fullscreen.png';
+import { Unity, useUnityContext } from 'react-unity-webgl';
 
 export default function App() {
-	const gameInstance = UnityLoader.instantiate(
-		'gameContainer',
-		'Build/WebGL.json',
-		{ onProgress: UnityProgress }
-	);
+	const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
+		loaderUrl: '/Build/pokemonWebGl.loader.js',
+		dataUrl: '/Build/pokemonWebGL.data',
+		frameworkUrl: '/Build/pokemonWebGL.framework.js',
+		codeUrl: '/Build/pokemonWebGL.wasm',
+	});
 
+	const loadingPercentage = Math.round(loadingProgression * 100);
 	return (
-		<body>
-			<div className='webgl-content'>
-				<div id='gameContainer' className='w-screen h-screen'></div>
-				<div className='footer'>
-					<div className='webgl-logo'>
-						<Image src={WebGlLogo} alt='WebGL Logo' width={100} height={100} />
-					</div>
-					<div
-						className='fullscreen'
-						onClick={() => gameInstance.SetFullscreen(1)}>
-						<Image src={FullScreen} alt='Fullscreen' width={100} height={100} />
-					</div>
-					<div className='title'>Pokémon Unity</div>
+		<div className='container'>
+			{isLoaded === false && (
+				// We'll conditionally render the loading overlay if the Unity
+				// Application is not loaded.
+				<div className='loading-overlay'>
+					<p>Loading... ({loadingPercentage}%)</p>
 				</div>
-			</div>
-		</body>
+			)}
+			<Unity className='unity' unityProvider={unityProvider} />
+		</div>
 	);
 }
