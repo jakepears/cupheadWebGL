@@ -27,7 +27,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"public/Build/UnityLoader.js"
+		"public/Build/Unity.loader.js"
 	],
 	"exclude": ["node_modules"]
 }
