@@ -1,8 +1,7 @@
 /** @format */
-'use client';
 
-import App from '@/components/App';
+import Landing from '@/components/Landing/Landing';
 
 export default function Home() {
-	return <App />;
+	return <Landing />;
 }

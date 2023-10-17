@@ -1,9 +1,9 @@
 /** @format */
-
+'use client';
 import React from 'react';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 
-export default function App() {
+export default function CupGame() {
 	const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
 		loaderUrl: '/Build/cupWeb.loader.js',
 		dataUrl: '/Build/cupWeb.data',
@@ -13,15 +13,18 @@ export default function App() {
 
 	const loadingPercentage = Math.round(loadingProgression * 100);
 	return (
-		<div className='container'>
+		<div className='flex items-center content-center h-screen w-screen'>
 			{isLoaded === false && (
 				// We'll conditionally render the loading overlay if the Unity
 				// Application is not loaded.
-				<div className='top-0 left-0 '>
+				<div className='top-0 left-0 items-center content-center'>
 					<p>Loading... ({loadingPercentage}%)</p>
 				</div>
 			)}
-			<Unity className='unity' unityProvider={unityProvider} />
+			<Unity
+				className='h-full w-full place-content-center'
+				unityProvider={unityProvider}
+			/>
 		</div>
 	);
 }
