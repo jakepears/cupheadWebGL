@@ -1,27 +1,84 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
+}
+
+/** @format */
+@layer utilities {
+	.webgl-content * {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+	.webgl-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+
+	.webgl-content .logo,
+	.progress {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+
+	.webgl-content .footer {
+		margin-top: 8px;
+		height: 10dvh;
+		line-height: 38px;
+		font-family: Helvetica, Verdana, Arial, sans-serif;
+		font-size: 18px;
+	}
+
+	.webgl-content .footer .webgl-logo,
+	.title,
+	.fullscreen {
+		height: 100%;
+		display: inline-block;
+		background: transparent center no-repeat;
+	}
+
+	.webgl-content .footer .webgl-logo {
+		width: 20dvw;
+		float: left;
+	}
+	.webgl-content .footer .title {
+		margin-right: 12px;
+		float: right;
+	}
+	.webgl-content .footer .fullscreen {
+		width: 5dvw;
+		border-radius: 20%;
+		float: right;
+	}
 }
