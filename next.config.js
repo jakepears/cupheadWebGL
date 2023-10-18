@@ -4,6 +4,7 @@
  */
 
 module.exports = {
+	output: 'export',
 	async rewrites() {
 		return [
 			{
