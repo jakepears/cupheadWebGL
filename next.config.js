@@ -5,6 +5,11 @@
 
 module.exports = {
 	trailingSlash: true,
+	output: 'export',
+	basePath: '/nextjs-github-pages',
+	images: {
+		unoptimized: true,
+	},
 	async rewrites() {
 		return [
 			{
