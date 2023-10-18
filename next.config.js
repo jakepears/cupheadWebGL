@@ -5,7 +5,6 @@
 
 module.exports = {
 	trailingSlash: true,
-	output: 'export',
 	async rewrites() {
 		return [
 			{
